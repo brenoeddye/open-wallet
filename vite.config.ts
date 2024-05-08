@@ -11,17 +11,6 @@ import Components from 'unplugin-vue-components/vite';
  */
 const WORKING_DIR = process.cwd();
 
-const SASS_PATH = resolve(WORKING_DIR, 'src', 'assets', 'scss').replace(
-  /\\/g,
-  '/'
-);
-
-const SASS_AUTO_IMPORT = `@use "sass:color";
-@use "sass:math";
-@import "${SASS_PATH}/variables";
-@import "${SASS_PATH}/themes";
-@import "${SASS_PATH}/mixins";`;
-
 // https://vitejs.dev/config/
 export default defineConfig({
 	plugins: [
@@ -47,20 +36,6 @@ export default defineConfig({
 		}),
 		vue(),
 	],
-	css: {
-		preprocessorOptions: {
-			scss: {
-				additionalData: SASS_AUTO_IMPORT,
-				sassOptions: {
-					precision: 8,
-					outputStyle: 'compressed',
-					sourceComments: false,
-					includePaths: [SASS_PATH],
-					quietDeps: true,
-				},
-			},
-		},
-	},
 	resolve: {
 		alias: {
 			'@': resolve(WORKING_DIR, 'src'),
